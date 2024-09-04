@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football Match Analysis</title>
+</head>
+
+<body>
+    <h1>Football Match Analysis</h1>
+    <script>
+        // Dữ liệu mẫu về trận đấu
+        const game = {
+            team1: 'Bayern Munich',
+            team2: 'Borussia Dortmund',
+            players: [
+                [
+                    'Neuer', // Thủ môn Bayern Munich
+                    'Pavard',
+                    'Martinez',
+                    'Alaba',
+                    'Davies',
+                    'Kimmich',
+                    'Goretzka',
+                    'Muller',
+                    'Gnabry',
+                    'Lewandowski',
+                    'Coman',
+                ],
+                [
+                    'Burki', // Thủ môn Borussia Dortmund
+                    'Schulz',
+                    'Hummels',
+                    'Akanji',
+                    'Hakimi',
+                    'Weigl',
+                    'Witsel',
+                    'Hazard',
+                    'Brandt',
+                    'Sancho',
+                    'Reus',
+                ],
+            ],
+            scored: ['Lewandowski', 'Gnabry', 'Lewandowski'],
+            odds: {
+                team1: 1.33,
+                draw: 3.25,
+                team2: 6.5,
+            },
+        };
+
+        // 1. Tạo biến cho thủ môn và mảng cho các cầu thủ trên sân
+        const [gk, ...fieldPlayers] = game.players[0];
+        console.log("Goalkeeper (Bayern Munich):", gk);
+        console.log("Field Players (Bayern Munich):", fieldPlayers);
+
+        // 2. Tạo mảng người chơi cho mỗi đội
+        const players1 = game.players[0];
+        const players2 = game.players[1];
+        console.log("Players (Bayern Munich):", players1);
+        console.log("Players (Borussia Dortmund):", players2);
+
+        // 3. Tạo mảng 'allPlayers' chứa tất cả người chơi của cả hai đội
+        const allPlayers = [...players1, ...players2];
+        console.log("All Players:", allPlayers);
+
+        // 4. Tạo mảng mới 'players1Final' chứa tất cả cầu thủ của team1 cộng với 'Thiago', 'Coutinho' và 'Perisic'
+        const players1Final = [...players1, 'Thiago', 'Coutinho', 'Perisic'];
+        console.log("Final Players (Bayern Munich):", players1Final);
+
+        // 5. Tạo biến cho mỗi số lẻ (team1, draw, team2)
+        const {
+            team1,
+            draw,
+            team2
+        } = game.odds;
+        console.log("Odds Team 1:", team1);
+        console.log("Odds Draw:", draw);
+        console.log("Odds Team 2:", team2);
+
+        // 6. Viết hàm 'printGoals'
+        function printGoals(...players) {
+            console.log(`${players.length} goals were scored`);
+            for (const player of players) {
+                console.log(player);
+            }
+        }
+
+        // Gọi hàm printGoals với một số cầu thủ
+        printGoals('Davies', 'Muller', 'Lewandowski', 'Kimmich');
+        printGoals(...game.scored);
+
+        // 7. Đội nào có tỷ lệ cược thấp hơn sẽ có nhiều khả năng thắng hơn
+        const likelyWinner = team1 < team2 ? game.team1 : game.team2;
+        console.log("Likely Winner:", likelyWinner);
+    </script>
+</body>
+
+</html>
